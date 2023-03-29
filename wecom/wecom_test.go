@@ -15,9 +15,10 @@ func TestMain(m *testing.M) {
 
 func TestSend(t *testing.T) {
 	// 这里使用你的企业微信机器人Webhook URL替换
-	webhookURL := "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=%s"
 
-	client := wecom.NewClient(webhookURL)
+	accesstoken := os.Getenv("WECOM_ACCESS_TOKEN")
+
+	client := wecom.NewClient(accesstoken)
 
 	t.Run("TextMessage", func(t *testing.T) {
 		msg := &wecom.TextMessage{
